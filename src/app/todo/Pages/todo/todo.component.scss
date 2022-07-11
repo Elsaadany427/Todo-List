@@ -1,0 +1,16 @@
+.content {
+  display: flex; /* establish flex container */
+  flex-direction: column; /* make main-axis vertical */
+  justify-content: center; /* align items vertically, in this case */
+  align-items: center; /* align items horizontally, in this case */
+  &__form-container,  &__form-content {
+    width: 40%;
+  }
+  &__form-content{
+    p{
+      margin-top: 20px;
+    }
+  }
+}
+
+

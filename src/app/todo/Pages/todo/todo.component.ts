@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { AddTodo, DeleteTodo, LoadTodo } from 'src/app/state/todo/actions/todo.actions';
 import { selectAllTodos } from 'src/app/state/todo/selectors/todo.selector';
@@ -13,12 +14,14 @@ export class TodoComponent implements OnInit {
   public allTodos$ = this.store.select(selectAllTodos);
   // Reference for adding todo
   public todoContent: string = '';
+
   constructor(private store: Store) { }
 
   ngOnInit(): void {
     // first make load data dispatch
     // for making effect run and load data
     this.store.dispatch(LoadTodo());
+
   }
 
   addTodo(){
@@ -29,7 +32,12 @@ export class TodoComponent implements OnInit {
   }
 
   deleteTodo(id: string){
-    this.store.dispatch(DeleteTodo({TakeTodoIdFromYou: id}))
+    setTimeout(() => {
+    this.store.dispatch(DeleteTodo({TakeTodoIdFromYou: id}));
+    }, 500)
   }
 
+  onFilterChange(event: any){
+    console.log(event.checked)
+  }
 }

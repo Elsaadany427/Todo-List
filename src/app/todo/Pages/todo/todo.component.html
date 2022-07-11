@@ -1,20 +1,24 @@
-<ion-content>
-  <div class="container">
-    <h2>Let's get things done!</h2>
-    <ion-input [(ngModel)]="todoContent"> </ion-input>
-    <ion-button color="success" fill="outline" (click)="addTodo()"
-      >Add Todo</ion-button
-    >
+<app-nav></app-nav>
 
-    <ion-list lines="none">
-      <ion-item
-        (click)="deleteTodo(todo.id)"
-        button
-        *ngFor="let todo of allTodos$ | async"
-      >
-        <ion-icon name="checkmark-circle-outline" slot="end"></ion-icon>
-        <ion-label> {{todo.content}} </ion-label>
-      </ion-item>
-    </ion-list>
+<section class="content">
+  <div class="content__form-container">
+    <form class="content__example-form">
+      <h2 style="margin-bottom: 20px ;">Let's get things done!</h2>
+      <mat-form-field class="example-full-width" appearance="fill" style="display: block;">
+        <mat-label>Favorite Todo</mat-label>
+        <input matInput placeholder="Ex. Pizza" [(ngModel)]="todoContent" [ngModelOptions]="{standalone: true}">
+      </mat-form-field>
+      <button mat-raised-button color="primary" (click)="addTodo()">Add Todo</button>
+    </form>
   </div>
-</ion-content>
+  <div class="content__form-content">
+    <p>
+      Todos Content: {{ (allTodos$ | async)?.length }}
+    </p>
+    <mat-selection-list style="display: block;">
+      <mat-list-option (click)="deleteTodo(todo.id)" *ngFor="let todo of allTodos$ | async">
+        {{ todo.content }}
+      </mat-list-option>
+    </mat-selection-list>
+  </div>
+</section>

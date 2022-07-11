@@ -12,6 +12,8 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from 'src/environments/environment';
 import { todoReducer } from './state/todo/reducers/todo.reducer';
 import { TodoEffects } from './state/todo/effects/todo.effects';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 @NgModule({
   declarations: [
@@ -20,15 +22,16 @@ import { TodoEffects } from './state/todo/effects/todo.effects';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    IonicModule.forRoot(),
-    IonicStorageModule.forRoot(),
     StoreModule.forRoot({ todos: todoReducer }),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: environment.production,
     }),
+    IonicModule.forRoot(),
+    IonicStorageModule.forRoot(),
     EffectsModule.forRoot([TodoEffects]),
     AppRoutingModule,
+    BrowserAnimationsModule,
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent]
