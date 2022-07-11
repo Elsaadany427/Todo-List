@@ -37,7 +37,4 @@ export class TodoComponent implements OnInit {
     }, 500)
   }
 
-  onFilterChange(event: any){
-    console.log(event.checked)
-  }
 }
